@@ -53,18 +53,8 @@ function del(request, response) {
  	// TODO: remove session id via login.logout(xxx)
  	// No need to set session id in the response cookies since you just logged out!
 	var cookies = request.cookies;
-	console.log(cookies);
-	if ('session_id' in cookies) {
-		var sid = cookies['session_id'];
-		if ( login.isLoggedIn(sid) ) {
-			login.logout(sid);
-         	response.end('Logged out from the server\n');
-		} else {
-			response.end("Invalid session_id! Please login again\n");
-		}
-	} else {
-		response.end("Please login via HTTP POST\n");
-	}
+	var sid = cookies['session_id'];
+	login.logout(sid);
 
 };
 
